@@ -13,10 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* HOMEPAGE */
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+/* ROUTES AUTHENTICATION */
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+/* ROUTES PAGES LOGGED USERS */
+
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->middleware('auth')
+    ->group(function() {
+        // Home Admin
+        Route::get('/', 'HomeController@index')->name('home');
+        // Post Routes
+    });
