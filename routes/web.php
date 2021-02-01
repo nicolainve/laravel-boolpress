@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 /* HOMEPAGE */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 
 /* ROUTES AUTHENTICATION */
