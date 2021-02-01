@@ -42,10 +42,7 @@ class PostController extends Controller
     {
         $data = $request->all();
         
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+        $request->validate($this->validation());
 
         $data['user_id'] = Auth::id();
 
@@ -94,10 +91,7 @@ class PostController extends Controller
     {
         $data = $request->all();
 
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+        $request->validate($this->validation());
 
         $data['slug'] = Str::slug($data['title'], '-');
 
@@ -117,5 +111,13 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // Validation Rule
+    private function validation() {
+        return [
+            'title' => 'required',
+            'body' => 'required',
+        ];
     }
 }
